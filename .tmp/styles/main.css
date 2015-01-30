@@ -1,0 +1,6 @@
+.soft-hover:hover {
+	border-width: 1px;
+	border-color: #efefef;
+	border-style: none none none solid;
+	margin-left: 1em;
+}

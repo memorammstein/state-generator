@@ -8,9 +8,18 @@
  * Controller of the aiStateGeneratorApp
  */
 angular.module('aiStateGeneratorApp')
-  .controller('DescriberCtrl', function ($scope, $rootScope, $location, $window) {
+  .controller('DescriberCtrl', function ($scope, $location, $window, localStorageService) {
 
-  	$rootScope.states = new Array();
+    $scope.statesString = localStorageService.get('statesString') || '';
+    $scope.operatorsString = localStorageService.get('operatorsString') || '';
+
+    $scope.$watch('statesString', function () {
+      localStorageService.set('statesString', $scope.statesString);
+    }, true);
+
+    $scope.$watch('operatorsString', function () {
+      localStorageService.set('operatorsString', $scope.operatorsString);
+    }, true);
 
   	$scope.states = new Array();
   	$scope.operators = new Array();
@@ -18,7 +27,7 @@ angular.module('aiStateGeneratorApp')
   	$scope.interactions = new Array();
 
   	$scope.splitString = function (string) {
-  		return string.split(',');
+  		return string.split(';');
   	}
 
     $scope.listInteractions = function (statesArray, operatorsArray) {
@@ -48,7 +57,7 @@ angular.module('aiStateGeneratorApp')
     			};
     		};
     	};
-    	$rootScope.states = tempStates;
+    	localStorageService.set('stateObjectArray', tempStates);
     	$location.path('/viewer');
     }
 

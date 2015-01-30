@@ -8,10 +8,10 @@
  * Controller of the aiStateGeneratorApp
  */
 angular.module('aiStateGeneratorApp')
-  .controller('ViewerCtrl', function ($scope, $rootScope) {
+  .controller('ViewerCtrl', function ($scope, localStorageService) {
     
     $scope.refreshViewer = function () {
-    	$scope.states = $rootScope.states || [];
+    	$scope.states = localStorageService.get('stateObjectArray') || [];
     }
 
     $scope.refreshViewer();
