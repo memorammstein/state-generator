@@ -26,6 +26,10 @@ angular.module('aiStateGeneratorApp')
 
   	$scope.interactions = new Array();
 
+    $scope.generateStatesString = function () {
+      $window.alert('Con esto puedes crear la cadena de estados programáticamente si generas el código en el controlador');
+    }
+
   	$scope.splitString = function (string) {
   		return string.split(';');
   	}
@@ -42,7 +46,7 @@ angular.module('aiStateGeneratorApp')
     }
 
     $scope.generateInteractions = function () {
-    	$window.alert('Con esto puedes generar relaciones programáticamente si generas el código en el controlador');
+    	$window.alert('Con esto puedes crear relaciones programáticamente si generas el código en el controlador');
     }
 
     $scope.generateStates = function (interactionsArray) {
