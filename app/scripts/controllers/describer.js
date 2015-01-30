@@ -49,10 +49,15 @@ angular.module('aiStateGeneratorApp')
     	$window.alert('Con esto puedes crear relaciones programáticamente si generas el código en el controlador');
     }
 
-    $scope.generateStates = function (interactionsArray) {
+    $scope.generateStates = function (interactionsArray, initialState) {
     	var tempStates = new Array();
     	for (var i = $scope.states.length - 1; i >= 0; i--) {
-    		tempStates.push({info: $scope.states[i], hasBeenvisited: false, links: []});
+        var temp = {info: $scope.states[i], hasBeenvisited: false};
+        if (temp.info == initialState) {
+          temp.isInitialState = true;
+        };
+        temp.links = [];
+    		tempStates.push(temp);
     	};
     	for (var i = interactionsArray.length - 1; i >= 0; i--) {
     		for (var j = tempStates.length - 1; j >= 0; j--) {
