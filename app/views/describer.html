@@ -1,26 +1,25 @@
 <div class="row">
   <div class="col-xs-12">
     <form>
-      <div class="form-group">
+      <!-- <div class="form-group">
           <label for="states">Estados</label>
           <input type="text" class="form-control" id="states" placeholder="Ingresa aquí los estados, separados por comas" ng-model="statesString" autocomplete="off">
           <span class="help-block">Ingresa cada estado separado por <kbd>;</kbd> <button class="btn btn-default btn-xs" ng-click="generateStatesString()">Generar cadena de estados</button></span>
-        </div>
-        <div class="form-group">
+        </div> -->
+        <!-- <div class="form-group">
           <label for="operators">Operadores</label>
           <input type="text" class="form-control" id="operators" placeholder="Ingresa aquí las operaciones, separadas por comas" ng-model="operatorsString" autocomplete="off">
           <span class="help-block">Ingresa cada operador separado por <kbd>;</kbd></span>
-        </div>
-        <button type="submit" class="btn btn-primary" ng-click="listInteractions(splitString(statesString), splitString(operatorsString))" 
-        ng-disabled="(statesString == '') || (operatorsString == '') || (statesString == null) || (operatorsString == null)"><i class="fa fa-list"></i> Listar interacciones</button>
+        </div> -->
+        <button type="submit" class="btn btn-primary" ng-click="generateStatesObject()"><i class="fa fa-list"></i> Generar</button>
     </form>
   </div>
 </div>
-<div class="row"ng-if="interactions.length > 0"> <!-- if -->
+<div class="row"> <!-- if -->
   <div class="col-xs-12">
     <hr>
     <div class="row">
-      <div class="col-md-6">
+      <!-- <div class="col-md-6">
         <div class="row" style="margin-bottom: 1em;">
           <div class="col-xs-12">
             <strong>Estado inicial</strong>
@@ -38,23 +37,23 @@
             {{interaction.origin || 'estado'}} ({{interaction.operator || 'operador no definido'}}) <i class="fa fa-arrow-right"></i>&nbsp;
             <select ng-model="interaction.linksTo">
               <option selected disabled value="">--posibles enlaces--</option>
-              <option ng-repeat="state in states" value="{{state}}">{{state || 'estado no definido'}}</option>
+              <option ng-repeat="state in getValidStatesForState(interaction.origin)" value="{{state}}">{{state || 'estado no definido'}}</option>
             </select>
           </div>
         </div>
-      </div>
-      <div class="col-md-6">
-        <div class="row">
+      </div> -->
+      <div class="col-md-12">
+        <!-- <div class="row">
           <div class="col-xs-6">
             <button class="btn btn-default btn-block" ng-click="generateInteractions()"><i class="fa fa-magic"></i> Generar interacciones</button>
           </div>
           <div class="col-xs-6">
             <button class="btn btn-primary btn-block" ng-click="generateStates(interactions, initialState)"><i class="fa fa-eye"></i> Generar estados objeto</button>
           </div>
-        </div>
-        <div class="row" style="margin-top:2.5em;">
+        </div> -->
+        <div class="row">
           <div class="col-xs-12">
-            <pre>{{interactions | json}}</pre>
+            <pre>{{statesObject | json}}</pre>
           </div>
         </div>
       </div>

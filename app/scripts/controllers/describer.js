@@ -26,8 +26,11 @@ angular.module('aiStateGeneratorApp')
 
   	$scope.interactions = new Array();
 
+    $scope.statesObject = new Array();
+
     $scope.generateStatesString = function () {
       $window.alert('Con esto puedes crear la cadena de estados programáticamente si generas el código en el controlador');
+      var tempString = '';
     }
 
   	$scope.splitString = function (string) {
@@ -45,6 +48,16 @@ angular.module('aiStateGeneratorApp')
     	};
     }
 
+    $scope.getValidStatesForState = function (state) {
+      var temp = [];
+      for (var i = $scope.states.length - 1; i >= 0; i--) {
+        if ($scope.states[i] != state) {
+          temp.push($scope.states[i]);
+        };
+      };
+      return temp;
+    }
+
     $scope.generateInteractions = function () {
     	$window.alert('Con esto puedes crear relaciones programáticamente si generas el código en el controlador');
     }
@@ -52,7 +65,7 @@ angular.module('aiStateGeneratorApp')
     $scope.generateStates = function (interactionsArray, initialState) {
     	var tempStates = new Array();
     	for (var i = $scope.states.length - 1; i >= 0; i--) {
-        var temp = {info: $scope.states[i], hasBeenvisited: false};
+        var temp = {info: $scope.states[i]};
         if (temp.info == initialState) {
           temp.isInitialState = true;
         };
@@ -68,6 +81,13 @@ angular.module('aiStateGeneratorApp')
     	};
     	localStorageService.set('stateObjectArray', tempStates);
     	$location.path('/viewer');
+    }
+
+    $scope.generateStatesObject = function () {
+      var initialState = [[0,0,0,0,0,0,0,0,0], [0,0,0,0,0,0,0,0,0], [0,0,0,0,0,0,0,0,0], [0,0,0,0,0,0,0,0,0], [0,0,0,0,0,0,0,0,0], [0,0,0,0,0,0,0,0,0], [0,0,0,0,0,0,0,0,0], [0,0,0,0,0,0,0,0,0], [0,0,0,0,0,0,0,0,0]];
+      var initialStateObject = {initialState: initialState, childs:[]};
+      localStorageService.set('stateObjectArray', initialStateObject);
+      $scope.statesObject = initialStateObject;
     }
 
   });

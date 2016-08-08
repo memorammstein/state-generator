@@ -1,10 +1,35 @@
 <div class="row" style="margin-bottom:1em;">
 	<div class="col-xs-12">
-		<button class="btn btn-default" ng-click="refreshViewer()"><i class="fa fa-refresh"></i> Volver a cargar</button>
+		<div class="row">
+			<div class="col-xs-4">
+				<strong>Buscar: </strong>
+				<select ng-model="stateToSearch">
+		          <option selected disabled value="">--estados--</option>
+		          <option ng-repeat="state in states" value="{{state.info}}">{{state.info || 'estado no definido'}}</option>
+		        </select>
+			</div>
+			<div class="col-xs-4 text-center">
+				<i class="fa fa-search"></i> Búsqueda:
+				<div class="btn-group">
+					<button class="btn btn-default btn-xs" ng-click="deepSearch(stateToSearch)" ng-disabled="stateToSearch == '' || stateToSearch == null">profundidad</button>
+					<button class="btn btn-default btn-xs" ng-click="breadthSearch(stateToSearch)" ng-disabled="stateToSearch == '' || stateToSearch == null">amplitud</button>
+				</div>
+			</div>
+			<div class="col-xs-4 text-right">
+				<button class="btn btn-default btn-xs" ng-click="reverseStates()"><i class="fa fa-sort"></i> Invertir estados</button>
+			</div>
+		</div>
 	</div>
 </div>
 <div class="row">
 	<div class="col-xs-12">
+		<h4>Estados</h4>
 		<pre>{{states | json}}</pre>
+	</div>
+</div>
+<div class="row">
+	<div class="col-xs-12">
+		<h4>Árbol</h4>
+		<pre>{{statesTree | json}}</pre>
 	</div>
 </div>
